@@ -6,7 +6,7 @@
 
 ### 开源地址：
 
-[【GigHub:】https://github.com/phpwdk/api-doc-php](https://github.com/phpwdk/api-doc-php)
+[https://github.com/phpwdk/api-doc-php](https://github.com/phpwdk/api-doc-php)
     
 ### 扩展安装：
 
