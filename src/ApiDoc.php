@@ -26,6 +26,7 @@ class ApiDoc
      * @var array - 忽略生成的类方法名
      */
     private $filterMethod = ['__construct'];
+    private $filterClass  = ['think\admin\controller', 'app\cut_video\service\tableservice'];
 
     /**
      * ApiDoc 构造函数.
@@ -41,6 +42,10 @@ class ApiDoc
         // 忽略生成的类方法
         if (isset($config['filter_method'])) {
             $this->filterMethod = array_merge($this->filterMethod, $config['filter_method']);
+        }
+        // 忽略生成的类方法
+        if (isset($config['filter_class'])) {
+            $this->filterClass = array_merge($this->filterClass, $config['filter_class']);
         }
     }
 
@@ -116,7 +121,7 @@ class ApiDoc
             try {
                 $parse          = new ParseComment();
                 $actionComments = $parse->parseCommentToArray($action->getDocComment());
-                if (count($actionComments) >= 1 && !in_array($action->name, $this->filterMethod)) {
+                if (count($actionComments) >= 1 && !in_array($action->name, $this->filterMethod) && !in_array(strtolower($action->class), $this->filterClass)) {
                     $comments[$action->name] = $actionComments;
                 }
             } catch (\Exception $exception) {
