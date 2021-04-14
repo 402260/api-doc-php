@@ -72,11 +72,11 @@ class ApiDoc
     /**
      * 获取类的注释
      *
-     * @param $class - 类名称(存在命名空间时要完整写入) eg: $class = 'phpwdk\\apidoc\\ApiDoc';
+     * @param string $class - 类名称(存在命名空间时要完整写入) eg: $class = 'phpwdk\\apidoc\\ApiDoc';
      *
      * @return array - 返回格式为数组（未获取到注释时返回空数组）
      */
-    private function _getClassComment($class): array
+    private function _getClassComment(string $class): array
     {
         try {
             $reflection      = new \ReflectionClass($class);
