@@ -73,4 +73,24 @@ class ParseLine
             'return_title' => $line[3] ?? '',
         ];
     }
+
+    /**
+     * 解析 desc_return
+     *
+     * @param array $line
+     *
+     * @return array
+     */
+    public function parseLineDescReturn(array $line): array
+    {
+        return [
+            'type'            => $line[0] ?? '',
+            'return_type'     => $line[1] ?? '',
+            'return_name'     => $line[2] ?? '',
+            'return_required' => $line[3] ?? '',
+            'return_title'    => $line[4] ?? '',
+            'return_superior' => $line[5] ?? '',
+            'return_desc'     => $line[6] ?? '',
+        ];
+    }
 }
