@@ -262,7 +262,10 @@ EXT;
      */
     private function _getActionItem(string $className, string $actionName, array $actionItem): string
     {
-        $html = <<<EXT
+        $actionItem['title']  = $actionItem['title'] ?? '--';
+        $actionItem['method'] = $actionItem['method'] ?? '--';
+        $actionItem['url']    = $actionItem['url'] ?? '--';
+        $html                 = <<<EXT
                 <div class="list-group-item list-group-item-action action-item  col-md-12" id="{$className}_{$actionName}">
                     <h4 class="action-title">API - {$actionItem['title']}</h4>
                     <p>请求方式：
