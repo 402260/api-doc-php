@@ -99,7 +99,6 @@ class BootstrapApiDoc extends ApiDoc
      *                  ReflectionMethod::IS_PRIVATE
      *                  ReflectionMethod::IS_ABSTRACT
      *                  ReflectionMethod::IS_FINAL
-     *
      * @return string
      */
     public function getHtml(int $type = \ReflectionMethod::IS_PUBLIC): string
@@ -148,7 +147,6 @@ EXT;
      * 解析return 并生成HTML
      *
      * @param array $data
-     *
      * @return string
      */
     private function _getReturnData(array $data = []): string
@@ -174,7 +172,6 @@ EXT;
      * 解析desc_return 并生成HTML
      *
      * @param array $data
-     *
      * @return string
      */
     private function _getDescReturnData(array $data): string
@@ -202,7 +199,6 @@ EXT;
      * 解析param 并生成HTML
      *
      * @param array $data
-     *
      * @return string
      */
     private function _getParamData(array $data = []): string
@@ -230,7 +226,6 @@ EXT;
      * 解析code 并生成HTML
      *
      * @param array $data
-     *
      * @return string
      */
     private function _getCodeData(array $data = []): string
@@ -257,7 +252,6 @@ EXT;
      * @param string $className  - 类名
      * @param string $actionName - 操作名
      * @param array  $actionItem - 接口数据
-     *
      * @return string
      */
     private function _getActionItem(string $className, string $actionName, array $actionItem): string
@@ -286,7 +280,6 @@ EXT;
      *
      * @param $className - 类名称
      * @param $classItem - 类数据
-     *
      * @return string
      */
     private function _getClassItem(string $className, array $classItem): string
@@ -311,7 +304,6 @@ EXT;
      * 获取API文档HTML
      *
      * @param array $data - 文档数据
-     *
      * @return string
      */
     private function _getDocList(array $data): string
@@ -332,7 +324,6 @@ EXT;
      * 获取顶部导航HTML
      *
      * @param array $data -API文档数据
-     *
      * @return string
      */
     private function _getTopNavList(array $data): string
