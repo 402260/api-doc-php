@@ -37,6 +37,7 @@ class ParseLine
             'param_title'    => $line[4] ?? '',
             'param_superior' => $line[5] ?? '',
             'param_default'  => $line[6] ?? '',
+            'param_desc'     => $line[7] ?? '',
         ];
     }
 
