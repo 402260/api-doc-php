@@ -70,7 +70,7 @@ class BootstrapApiDoc extends ApiDoc
      *
      * @param array $config - 配置信息
      */
-    public function __construct($config)
+    public function __construct(array $config)
     {
         parent::__construct($config);
         // bootstrapJs文件路径
@@ -102,7 +102,7 @@ class BootstrapApiDoc extends ApiDoc
      *
      * @return string
      */
-    public function getHtml($type = \ReflectionMethod::IS_PUBLIC)
+    public function getHtml(int $type = \ReflectionMethod::IS_PUBLIC): string
     {
         $data = $this->getApiDoc($type);
         $html = <<<EXT
@@ -151,7 +151,7 @@ EXT;
      *
      * @return string
      */
-    private function _getReturnData($data = [])
+    private function _getReturnData(array $data = []): string
     {
         $html = '';
         if (!is_array($data) || count($data) < 1) {
@@ -177,7 +177,7 @@ EXT;
      *
      * @return string
      */
-    private function _getParamData($data = [])
+    private function _getParamData(array $data = []): string
     {
         $html = '';
         if (!is_array($data) || count($data) < 1) {
@@ -205,7 +205,7 @@ EXT;
      *
      * @return string
      */
-    private function _getCodeData($data = [])
+    private function _getCodeData(array $data = []): string
     {
         $html = '';
         if (!is_array($data) || count($data) < 1) {
@@ -226,13 +226,13 @@ EXT;
     /**
      * 获取指定接口操作下的文档信息
      *
-     * @param $className  - 类名
-     * @param $actionName - 操作名
-     * @param $actionItem - 接口数据
+     * @param string $className  - 类名
+     * @param string $actionName - 操作名
+     * @param array  $actionItem - 接口数据
      *
      * @return string
      */
-    private function _getActionItem($className, $actionName, $actionItem)
+    private function _getActionItem(string $className, string $actionName, array $actionItem): string
     {
         $html = <<<EXT
                 <div class="list-group-item list-group-item-action action-item  col-md-12" id="{$className}_{$actionName}">
@@ -257,7 +257,7 @@ EXT;
      *
      * @return string
      */
-    private function _getClassItem($className, $classItem)
+    private function _getClassItem(string $className, array $classItem): string
     {
         $title      = Tools::getSubValue('title', $classItem, '未命名');
         $actionHtml = '';
@@ -282,7 +282,7 @@ EXT;
      *
      * @return string
      */
-    private function _getDocList($data)
+    private function _getDocList(array $data): string
     {
         $html = '';
         if (count($data) < 1) {
@@ -299,11 +299,11 @@ EXT;
     /**
      * 获取顶部导航HTML
      *
-     * @param $data -API文档数据
+     * @param array $data -API文档数据
      *
      * @return string
      */
-    private function _getTopNavList($data)
+    private function _getTopNavList(array $data): string
     {
         $html = '<ul class="navbar-nav" id="navbar-nav-top-nav">';
         foreach ($data as $className => $classItem) {
@@ -328,7 +328,7 @@ EXT;
      *
      * @return string
      */
-    private function _getCss()
+    private function _getCss(): string
     {
         $path = realpath($this->bootstrapCss);
         if (!$path || !is_file($path)) {
@@ -348,7 +348,7 @@ EXT;
      *
      * @return string
      */
-    private function _getJs()
+    private function _getJs(): string
     {
         //  $js = '<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>';
         //  $js .= '<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" type="text/javascript"></script>';

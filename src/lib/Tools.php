@@ -13,12 +13,12 @@ class Tools
     /**
      * 下划线命名转驼峰命名
      *
-     * @param $str     - 下划线命名字符串
-     * @param $isFirst - 是否为大驼峰（即首字母也大写）
+     * @param string $str     - 下划线命名字符串
+     * @param bool   $isFirst - 是否为大驼峰（即首字母也大写）
      *
      * @return mixed
      */
-    public static function underlineToHump($str, $isFirst = false)
+    public static function underlineToHump(string $str, bool $isFirst = false): string
     {
         $str = preg_replace_callback('/([\-\_]+([a-z]{1}))/i', function ($matches) {
             return strtoupper($matches[2]);
@@ -34,15 +34,14 @@ class Tools
      *
      * @param $str
      *
-     * @return mixed
+     * @return string
      */
-    public static function humpToUnderline($str)
+    public static function humpToUnderline($str): string
     {
         $str = preg_replace_callback('/([A-Z]{1})/', function ($matches) {
             return '_' . strtolower($matches[0]);
         }, $str);
-        $str = preg_replace('/^\_/', '', $str);
-        return $str;
+        return preg_replace('/^\_/', '', $str) ?: '';
     }
 
     /**
@@ -57,9 +56,9 @@ class Tools
     public static function getSubValue($name, $data, $default = '')
     {
         if (is_object($data)) {
-            $value = isset($data->$name) ? $data->$name : $default;
+            $value = $data->$name ?? $default;
         } else if (is_array($data)) {
-            $value = isset($data[$name]) ? $data[$name] : $default;
+            $value = $data[$name] ?? $default;
         } else {
             $value = $default;
         }
@@ -71,7 +70,7 @@ class Tools
      *
      * @param string - $docHtml - API文档HTML内容
      */
-    public static function downloadFile($docHtml)
+    public static function downloadFile(string $docHtml): void
     {
         set_time_limit(0);
         //下载文件需要用到的头

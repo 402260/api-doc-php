@@ -32,7 +32,7 @@ class ApiDoc
      *
      * @param array $config - 配置信息
      */
-    public function __construct($config)
+    public function __construct(array $config)
     {
         // 需要解析的类
         if (isset($config['class'])) {
@@ -57,7 +57,7 @@ class ApiDoc
      *
      * @return array
      */
-    public function getApiDoc($type = \ReflectionMethod::IS_PUBLIC)
+    public function getApiDoc(int $type = \ReflectionMethod::IS_PUBLIC): array
     {
         foreach ($this->class as $classItem) {
             $actionInfo = $this->_getActionComment($classItem, $type);
@@ -76,7 +76,7 @@ class ApiDoc
      *
      * @return array - 返回格式为数组（未获取到注释时返回空数组）
      */
-    private function _getClassComment($class)
+    private function _getClassComment($class): array
     {
         try {
             $reflection      = new \ReflectionClass($class);
@@ -102,7 +102,7 @@ class ApiDoc
      *
      * @return array - 返回格式为数组（未获取到注释时返回空数组）
      */
-    private function _getActionComment($class, $type = \ReflectionMethod::IS_PUBLIC)
+    private function _getActionComment($class, int $type = \ReflectionMethod::IS_PUBLIC): array
     {
         try {
             $reflection = new \ReflectionClass($class);

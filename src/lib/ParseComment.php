@@ -2,6 +2,8 @@
 
 namespace phpwdk\apidoc\lib;
 
+use think\contract\Arrayable;
+
 /**
  * 注释解析
  * Class ParseComment
@@ -18,11 +20,11 @@ class ParseComment
     /**
      * 将注释按行解析并以数组格式返回
      *
-     * @param $comment - 原始注释字符串
+     * @param string $comment - 原始注释字符串
      *
      * @return bool|array
      */
-    public function parseCommentToArray($comment)
+    public function parseCommentToArray(string $comment): array
     {
         $comments = [];
         if (empty($comment)) {
@@ -66,11 +68,11 @@ class ParseComment
     /**
      * 解析注释中的参数
      *
-     * @param $line - 注释行
+     * @param string $line - 注释行
      *
      * @return bool|array - 解析后的数组（解析失败返回false）
      */
-    private function _parseCommentLine($line)
+    private function _parseCommentLine(string $line): array
     {
         $line    = explode(' ', $line);
         $line[0] = substr($line[0], 1);
