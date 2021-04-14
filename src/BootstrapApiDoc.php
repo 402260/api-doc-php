@@ -171,6 +171,34 @@ EXT;
     }
 
     /**
+     * 解析desc_return 并生成HTML
+     *
+     * @param array $data
+     *
+     * @return string
+     */
+    private function _getDescReturnData(array $data): string
+    {
+        if (!is_array($data) || count($data) < 1) {
+            return '';
+        }
+        $html = '<div class="table-item col-md-12"><p class="table-title"><span class="btn  btn-sm btn-success">返回参数</span></p>';
+        $html .= '<table class="table"><tr><td>字段</td><td>类型</td><td>必须</td><td>名称</td><td>上级节点</td><td>描述</td></tr>';
+        foreach ($data as $v) {
+            $html .= '<tr>
+                        <td>' . Tools::getSubValue('return_name', $v, '') . '</td>
+                        <td>' . Tools::getSubValue('return_type', $v, '') . '</td>
+                        <td>' . Tools::getSubValue('return_required', $v, '') . '</td>
+                        <td>' . Tools::getSubValue('return_title', $v, '') . '</td>
+                        <td>' . Tools::getSubValue('return_superior', $v, '') . '</td>
+                        <td>' . Tools::getSubValue('return_desc', $v, '') . '</td>
+                      </tr>';
+        }
+        $html .= '</table></div>';
+        return $html;
+    }
+
+    /**
      * 解析param 并生成HTML
      *
      * @param array $data
@@ -244,6 +272,7 @@ EXT;
                     {$this->_getParamData(Tools::getSubValue('param', $actionItem, []))}
                     {$this->_getReturnData(Tools::getSubValue('return', $actionItem, []))}
                     {$this->_getCodeData(Tools::getSubValue('code', $actionItem, []))}
+                    {$this->_getDescReturnData(Tools::getSubValue('desc_return', $actionItem, []))}
                 </div>
 EXT;
         return $html;
