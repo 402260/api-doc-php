@@ -67,10 +67,14 @@ class ParseLine
     public function parseLineReturn(array $line): array
     {
         return [
-            'type'         => $line[0] ?? '',
-            'return_type'  => $line[1] ?? '',
-            'return_name'  => $line[2] ?? '',
-            'return_title' => $line[3] ?? '',
+            'type'            => $line[0] ?? '',
+            'return_type'     => $line[1] ?? '',
+            'return_name'     => $line[2] ?? '',
+            'return_required' => $line[3] ?? '',
+            'return_title'    => $line[4] ?? '',
+            'return_superior' => $line[5] ?? '',
+            'return_default'  => $line[6] ?? '',
+            'return_desc'     => $line[7] ?? '',
         ];
     }
 
@@ -90,7 +94,8 @@ class ParseLine
             'return_required' => $line[3] ?? '',
             'return_title'    => $line[4] ?? '',
             'return_superior' => $line[5] ?? '',
-            'return_desc'     => $line[6] ?? '',
+            'return_default'  => $line[6] ?? '',
+            'return_desc'     => $line[7] ?? '',
         ];
     }
 }

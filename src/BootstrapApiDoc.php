@@ -151,17 +151,20 @@ EXT;
      */
     private function _getReturnData(array $data = []): string
     {
-        $html = '';
         if (!is_array($data) || count($data) < 1) {
-            return $html;
+            return '';
         }
-        $html .= '<div class="table-item col-md-12"><p class="table-title"><span class="btn  btn-sm btn-success">返回参数</span></p>';
-        $html .= '<table class="table"><tr><td>参数</td><td>类型</td><td>描述</td></tr>';
+        $html = '<div class="table-item col-md-12"><p class="table-title"><span class="btn  btn-sm btn-success">返回参数</span></p>';
+        $html .= '<table class="table"><tr><td>字段</td><td>类型</td><td>必须</td><td>名称</td><td>上级节点</td><td>默认值</td><td>描述</td></tr>';
         foreach ($data as $v) {
             $html .= '<tr>
                         <td>' . Tools::getSubValue('return_name', $v, '') . '</td>
                         <td>' . Tools::getSubValue('return_type', $v, '') . '</td>
+                        <td>' . Tools::getSubValue('return_required', $v, '是') . '</td>
                         <td>' . Tools::getSubValue('return_title', $v, '') . '</td>
+                        <td>' . Tools::getSubValue('return_superior', $v, '') . '</td>
+                        <td>' . Tools::getSubValue('return_default', $v, '无默认值') . '</td>
+                        <td>' . Tools::getSubValue('return_desc', $v, '') . '</td>
                       </tr>';
         }
         $html .= '</table></div>';
@@ -180,14 +183,15 @@ EXT;
             return '';
         }
         $html = '<div class="table-item col-md-12"><p class="table-title"><span class="btn  btn-sm btn-success">返回参数</span></p>';
-        $html .= '<table class="table"><tr><td>字段</td><td>类型</td><td>必须</td><td>名称</td><td>上级节点</td><td>描述</td></tr>';
+        $html .= '<table class="table"><tr><td>字段</td><td>类型</td><td>必须</td><td>名称</td><td>上级节点</td><td>默认值</td><td>描述</td></tr>';
         foreach ($data as $v) {
             $html .= '<tr>
                         <td>' . Tools::getSubValue('return_name', $v, '') . '</td>
                         <td>' . Tools::getSubValue('return_type', $v, '') . '</td>
-                        <td>' . Tools::getSubValue('return_required', $v, '') . '</td>
+                        <td>' . Tools::getSubValue('return_required', $v, '是') . '</td>
                         <td>' . Tools::getSubValue('return_title', $v, '') . '</td>
                         <td>' . Tools::getSubValue('return_superior', $v, '') . '</td>
+                        <td>' . Tools::getSubValue('return_default', $v, '无默认值') . '</td>
                         <td>' . Tools::getSubValue('return_desc', $v, '') . '</td>
                       </tr>';
         }
@@ -208,14 +212,16 @@ EXT;
             return $html;
         }
         $html .= '<div class="table-item col-md-12"><p class="table-title"><span class="btn  btn-sm btn-danger">请求参数</span></p>';
-        $html .= '<table class="table"><tr><td>参数</td><td>类型</td><td>描述</td><td>默认值</td><td>是否必须</td></tr>';
+        $html .= '<table class="table"><tr><td>字段</td><td>类型</td><td>必须</td><td>名称</td><td>上级节点</td><td>默认值</td><td>描述</td></tr>';
         foreach ($data as $v) {
             $html .= '<tr>
                         <td>' . Tools::getSubValue('param_name', $v, '') . '</td>
                         <td>' . Tools::getSubValue('param_type', $v, '') . '</td>
+                        <td>' . Tools::getSubValue('param_require', $v, '是') . '</td>
                         <td>' . Tools::getSubValue('param_title', $v, '') . '</td>
+                        <td>' . Tools::getSubValue('param_superior', $v, '') . '</td>
                         <td>' . Tools::getSubValue('param_default', $v, '无默认值') . '</td>
-                        <td>' . Tools::getSubValue('param_require', $v, '非必须') . '</td>
+                        <td>' . Tools::getSubValue('param_desc', $v, '') . '</td>
                       </tr>';
         }
         $html .= '</table></div>';
