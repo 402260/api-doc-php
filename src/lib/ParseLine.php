@@ -81,7 +81,7 @@ class ParseLine
      *
      * @return array
      */
-    public function parseLinedescReturn(array $line): array
+    public function parseLineDescReturn(array $line): array
     {
         return [
             'type'            => $line[0] ?? '',
