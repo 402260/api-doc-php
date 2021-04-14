@@ -14,7 +14,6 @@ class ParseLine
      * 解析 title|url
      *
      * @param array $line
-     *
      * @return array
      */
     public function parseLineTitle(array $line): array
@@ -26,18 +25,18 @@ class ParseLine
      * 解析 param
      *
      * @param array $line
-     *
      * @return array
      */
     public function parseLineParam(array $line): array
     {
         return [
-            'type'          => $line[0] ?? '',
-            'param_type'    => $line[1] ?? '',
-            'param_name'    => $line[2] ?? '',
-            'param_title'   => $line[3] ?? '',
-            'param_default' => $line[4] ?? '',
-            'param_require' => $line[5] ?? '',
+            'type'           => $line[0] ?? '',
+            'param_type'     => $line[1] ?? '',
+            'param_name'     => $line[2] ?? '',
+            'param_require'  => $line[5] ?? '',
+            'param_title'    => $line[3] ?? '',
+            'param_superior' => $line[5] ?? '',
+            'param_default'  => $line[4] ?? '',
         ];
     }
 
@@ -45,7 +44,6 @@ class ParseLine
      * 解析 code
      *
      * @param array $line
-     *
      * @return array
      */
     public function parseLineCode(array $line): array
@@ -61,7 +59,6 @@ class ParseLine
      * 解析 return
      *
      * @param array $line
-     *
      * @return array
      */
     public function parseLineReturn(array $line): array
@@ -82,7 +79,6 @@ class ParseLine
      * 解析 desc_return
      *
      * @param array $line
-     *
      * @return array
      */
     public function parseLinedescReturn(array $line): array
