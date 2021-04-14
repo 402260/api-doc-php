@@ -33,10 +33,10 @@ class ParseLine
             'type'           => $line[0] ?? '',
             'param_type'     => $line[1] ?? '',
             'param_name'     => $line[2] ?? '',
-            'param_require'  => $line[5] ?? '',
-            'param_title'    => $line[3] ?? '',
+            'param_require'  => $line[3] ?? '',
+            'param_title'    => $line[4] ?? '',
             'param_superior' => $line[5] ?? '',
-            'param_default'  => $line[4] ?? '',
+            'param_default'  => $line[6] ?? '',
         ];
     }
 
