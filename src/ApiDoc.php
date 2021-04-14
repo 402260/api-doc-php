@@ -1,4 +1,5 @@
 <?php
+
 namespace phpwdk\apidoc;
 
 use phpwdk\apidoc\lib\ParseComment;
@@ -6,6 +7,7 @@ use phpwdk\apidoc\lib\ParseComment;
 /**
  * ApiDoc生成
  * Class ApiDoc
+ *
  * @package phpwdk\apidoc
  */
 class ApiDoc
@@ -27,9 +29,11 @@ class ApiDoc
 
     /**
      * ApiDoc 构造函数.
+     *
      * @param array $config - 配置信息
      */
-    public function __construct($config) {
+    public function __construct($config)
+    {
         // 需要解析的类
         if (isset($config['class'])) {
             $this->class = array_merge($this->class, $config['class']);
@@ -42,20 +46,23 @@ class ApiDoc
 
     /**
      * 获取API文档数据
+     *
      * @param int $type - 方法过滤，默认只获取 public类型 方法
-     * ReflectionMethod::IS_STATIC
-     * ReflectionMethod::IS_PUBLIC
-     * ReflectionMethod::IS_PROTECTED
-     * ReflectionMethod::IS_PRIVATE
-     * ReflectionMethod::IS_ABSTRACT
-     * ReflectionMethod::IS_FINAL
+     *                  ReflectionMethod::IS_STATIC
+     *                  ReflectionMethod::IS_PUBLIC
+     *                  ReflectionMethod::IS_PROTECTED
+     *                  ReflectionMethod::IS_PRIVATE
+     *                  ReflectionMethod::IS_ABSTRACT
+     *                  ReflectionMethod::IS_FINAL
+     *
      * @return array
      */
-    public function getApiDoc($type = \ReflectionMethod::IS_PUBLIC) {
+    public function getApiDoc($type = \ReflectionMethod::IS_PUBLIC)
+    {
         foreach ($this->class as $classItem) {
             $actionInfo = $this->_getActionComment($classItem, $type);
             if (count($actionInfo) >= 1) {
-                $this->ApiTree[$classItem] = $this->_getClassComment($classItem);
+                $this->ApiTree[$classItem]           = $this->_getClassComment($classItem);
                 $this->ApiTree[$classItem]['action'] = $actionInfo;
             }
         }
@@ -64,12 +71,15 @@ class ApiDoc
 
     /**
      * 获取类的注释
+     *
      * @param $class - 类名称(存在命名空间时要完整写入) eg: $class = 'phpwdk\\apidoc\\ApiDoc';
+     *
      * @return array - 返回格式为数组（未获取到注释时返回空数组）
      */
-    private function _getClassComment($class) {
+    private function _getClassComment($class)
+    {
         try {
-            $reflection = new \ReflectionClass($class);
+            $reflection      = new \ReflectionClass($class);
             $classDocComment = $reflection->getDocComment();
         } catch (\Exception $exception) {
             return [];
@@ -80,17 +90,20 @@ class ApiDoc
 
     /**
      * 获取指定类下方法的注释
-     * @param $class - 类名称(存在命名空间时要完整写入) eg: $class = 'phpwdk\\apidoc\\ApiDoc';
-     * @param int $type - 方法过滤，默认只获取 public类型 方法
-     * ReflectionMethod::IS_STATIC
-     * ReflectionMethod::IS_PUBLIC
-     * ReflectionMethod::IS_PROTECTED
-     * ReflectionMethod::IS_PRIVATE
-     * ReflectionMethod::IS_ABSTRACT
-     * ReflectionMethod::IS_FINAL
+     *
+     * @param     $class - 类名称(存在命名空间时要完整写入) eg: $class = 'phpwdk\\apidoc\\ApiDoc';
+     * @param int $type  - 方法过滤，默认只获取 public类型 方法
+     *                   ReflectionMethod::IS_STATIC
+     *                   ReflectionMethod::IS_PUBLIC
+     *                   ReflectionMethod::IS_PROTECTED
+     *                   ReflectionMethod::IS_PRIVATE
+     *                   ReflectionMethod::IS_ABSTRACT
+     *                   ReflectionMethod::IS_FINAL
+     *
      * @return array - 返回格式为数组（未获取到注释时返回空数组）
      */
-    private function _getActionComment($class, $type = \ReflectionMethod::IS_PUBLIC) {
+    private function _getActionComment($class, $type = \ReflectionMethod::IS_PUBLIC)
+    {
         try {
             $reflection = new \ReflectionClass($class);
             //只允许生成public方法
@@ -101,7 +114,7 @@ class ApiDoc
         $comments = [];
         foreach ($method as $action) {
             try {
-                $parse = new ParseComment();
+                $parse          = new ParseComment();
                 $actionComments = $parse->parseCommentToArray($action->getDocComment());
                 if (count($actionComments) >= 1 && !in_array($action->name, $this->filterMethod)) {
                     $comments[$action->name] = $actionComments;

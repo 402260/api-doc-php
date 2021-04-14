@@ -1,4 +1,5 @@
 <?php
+
 namespace phpwdk\apidoc;
 
 use phpwdk\apidoc\lib\Tools;
@@ -6,6 +7,7 @@ use phpwdk\apidoc\lib\Tools;
 /**
  * BootstrapAPI文档生成
  * Class BootstrapApiDoc
+ *
  * @package phpwdk\apidoc
  */
 class BootstrapApiDoc extends ApiDoc
@@ -65,9 +67,11 @@ class BootstrapApiDoc extends ApiDoc
 
     /**
      * Bootstrap 构造函数.
+     *
      * @param array $config - 配置信息
      */
-    public function __construct($config) {
+    public function __construct($config)
+    {
         parent::__construct($config);
         // bootstrapJs文件路径
         $this->bootstrapJs = Tools::getSubValue('bootstrap_js', $config, $this->bootstrapJs);
@@ -87,16 +91,19 @@ class BootstrapApiDoc extends ApiDoc
 
     /**
      * 输出HTML
+     *
      * @param int $type - 方法过滤，默认只获取 public类型 方法
-     * ReflectionMethod::IS_STATIC
-     * ReflectionMethod::IS_PUBLIC
-     * ReflectionMethod::IS_PROTECTED
-     * ReflectionMethod::IS_PRIVATE
-     * ReflectionMethod::IS_ABSTRACT
-     * ReflectionMethod::IS_FINAL
+     *                  ReflectionMethod::IS_STATIC
+     *                  ReflectionMethod::IS_PUBLIC
+     *                  ReflectionMethod::IS_PROTECTED
+     *                  ReflectionMethod::IS_PRIVATE
+     *                  ReflectionMethod::IS_ABSTRACT
+     *                  ReflectionMethod::IS_FINAL
+     *
      * @return string
      */
-    public function getHtml($type = \ReflectionMethod::IS_PUBLIC) {
+    public function getHtml($type = \ReflectionMethod::IS_PUBLIC)
+    {
         $data = $this->getApiDoc($type);
         $html = <<<EXT
         <!DOCTYPE html>
@@ -122,13 +129,8 @@ class BootstrapApiDoc extends ApiDoc
                    </div>
              </nav>
              <div class="row">
-                    <div class="col-lg-12">{$this->_getDocList($data)}</div>
-                </div>
-             <div class="row">
-                    <div class="col-lg-12 text-center copyright-content">
-                        Copyright  2016 - 2018 <a href="http://www.xqitw.cn">小强IT屋</a> 版权所有
-                    </div>
-                </div>
+                  <div class="col-lg-12">{$this->_getDocList($data)}</div>
+             </div>
         </div>
         {$this->customJs}
         </body>
@@ -144,10 +146,13 @@ EXT;
 
     /**
      * 解析return 并生成HTML
+     *
      * @param array $data
+     *
      * @return string
      */
-    private function _getReturnData($data = []) {
+    private function _getReturnData($data = [])
+    {
         $html = '';
         if (!is_array($data) || count($data) < 1) {
             return $html;
@@ -167,10 +172,13 @@ EXT;
 
     /**
      * 解析param 并生成HTML
+     *
      * @param array $data
+     *
      * @return string
      */
-    private function _getParamData($data = []) {
+    private function _getParamData($data = [])
+    {
         $html = '';
         if (!is_array($data) || count($data) < 1) {
             return $html;
@@ -192,10 +200,13 @@ EXT;
 
     /**
      * 解析code 并生成HTML
+     *
      * @param array $data
+     *
      * @return string
      */
-    private function _getCodeData($data = []) {
+    private function _getCodeData($data = [])
+    {
         $html = '';
         if (!is_array($data) || count($data) < 1) {
             return $html;
@@ -214,12 +225,15 @@ EXT;
 
     /**
      * 获取指定接口操作下的文档信息
-     * @param $className - 类名
+     *
+     * @param $className  - 类名
      * @param $actionName - 操作名
      * @param $actionItem - 接口数据
+     *
      * @return string
      */
-    private function _getActionItem($className, $actionName, $actionItem) {
+    private function _getActionItem($className, $actionName, $actionItem)
+    {
         $html = <<<EXT
                 <div class="list-group-item list-group-item-action action-item  col-md-12" id="{$className}_{$actionName}">
                     <h4 class="action-title">API - {$actionItem['title']}</h4>
@@ -237,12 +251,15 @@ EXT;
 
     /**
      * 获取指定API类的文档HTML
+     *
      * @param $className - 类名称
      * @param $classItem - 类数据
+     *
      * @return string
      */
-    private function _getClassItem($className, $classItem) {
-        $title = Tools::getSubValue('title', $classItem, '未命名');
+    private function _getClassItem($className, $classItem)
+    {
+        $title      = Tools::getSubValue('title', $classItem, '未命名');
         $actionHtml = '';
         if (isset($classItem['action']) && is_array($classItem['action']) && count($classItem['action']) >= 1) {
             foreach ($classItem['action'] as $actionName => $actionItem) {
@@ -260,10 +277,13 @@ EXT;
 
     /**
      * 获取API文档HTML
+     *
      * @param array $data - 文档数据
+     *
      * @return string
      */
-    private function _getDocList($data) {
+    private function _getDocList($data)
+    {
         $html = '';
         if (count($data) < 1) {
             return $html;
@@ -278,20 +298,23 @@ EXT;
 
     /**
      * 获取顶部导航HTML
+     *
      * @param $data -API文档数据
+     *
      * @return string
      */
-    private function _getTopNavList($data) {
+    private function _getTopNavList($data)
+    {
         $html = '<ul class="navbar-nav" id="navbar-nav-top-nav">';
         foreach ($data as $className => $classItem) {
             $title = Tools::getSubValue('title', $classItem, '未命名');
-            $html .= '<li class="nav-item dropdown">';
-            $html .= '<a class="nav-link dropdown-toggle" href="#" id="' . $className . '-nav" data-toggle="dropdown">' . $title . '</a>';
-            $html .= '<div class="dropdown-menu" aria-labelledby="' . $className . '-nav">';
+            $html  .= '<li class="nav-item dropdown">';
+            $html  .= '<a class="nav-link dropdown-toggle" href="#" id="' . $className . '-nav" data-toggle="dropdown">' . $title . '</a>';
+            $html  .= '<div class="dropdown-menu" aria-labelledby="' . $className . '-nav">';
             foreach ($classItem['action'] as $actionName => $actionItem) {
                 $title = Tools::getSubValue('title', $actionItem, '未命名');
-                $id = $className . '_' . $actionName;
-                $html .= '<a class="dropdown-item" href="#' . $id . '">' . $title . '</a>';
+                $id    = $className . '_' . $actionName;
+                $html  .= '<a class="dropdown-item" href="#' . $id . '">' . $title . '</a>';
             }
             $html .= '</div></li>';
         }
@@ -302,9 +325,11 @@ EXT;
 
     /**
      * 获取文档CSS
+     *
      * @return string
      */
-    private function _getCss() {
+    private function _getCss()
+    {
         $path = realpath($this->bootstrapCss);
         if (!$path || !is_file($path)) {
             return $this->customCss;
@@ -320,26 +345,28 @@ EXT;
 
     /**
      * 获取文档JS
+     *
      * @return string
      */
-    private function _getJs() {
+    private function _getJs()
+    {
         //  $js = '<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>';
         //  $js .= '<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" type="text/javascript"></script>';
         //  $this->customJs = $js . $this->customJs;
         //  return $this->customJs;
         $bootstrapJs = realpath($this->bootstrapJs);
-        $jQueryJs = realpath($this->jQueryJs);
+        $jQueryJs    = realpath($this->jQueryJs);
         if (!$bootstrapJs || !$jQueryJs || !is_file($bootstrapJs) || !is_file($jQueryJs)) {
             $this->customJs = '';
             return $this->customCss;
         }
         $bootstrapJs = file_get_contents($bootstrapJs);
-        $jQueryJs = file_get_contents($jQueryJs);
+        $jQueryJs    = file_get_contents($jQueryJs);
         if (empty($bootstrapJs) || empty($jQueryJs)) {
             $this->customJs = '';
             return $this->customJs;
         }
-        $js = '<script type="text/javascript">' . $jQueryJs . '</script>' . '<script type="text/javascript">' . $bootstrapJs . '</script>';
+        $js             = '<script type="text/javascript">' . $jQueryJs . '</script>' . '<script type="text/javascript">' . $bootstrapJs . '</script>';
         $this->customJs = $js . $this->customJs;
         return $this->customJs;
     }

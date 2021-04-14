@@ -1,9 +1,11 @@
 <?php
+
 namespace phpwdk\apidoc\lib;
 
 /**
  * 注释解析
  * Class ParseComment
+ *
  * @package phpwdk\apidoc\lib
  */
 class ParseComment
@@ -15,10 +17,13 @@ class ParseComment
 
     /**
      * 将注释按行解析并以数组格式返回
+     *
      * @param $comment - 原始注释字符串
+     *
      * @return bool|array
      */
-    public function parseCommentToArray($comment) {
+    public function parseCommentToArray($comment)
+    {
         $comments = [];
         if (empty($comment)) {
             return $comments;
@@ -43,7 +48,7 @@ class ParseComment
             if (!$_parse) {
                 continue;
             }
-            $_type = $_parse['type'];
+            $_type    = $_parse['type'];
             $_content = isset($_parse['content']) ? $_parse['content'] : '';
             if (in_array($_type, ['param', 'code', 'return'])) {
                 if (!isset($this->commentParams[$_type])) {
@@ -60,14 +65,17 @@ class ParseComment
 
     /**
      * 解析注释中的参数
+     *
      * @param $line - 注释行
+     *
      * @return bool|array - 解析后的数组（解析失败返回false）
      */
-    private function _parseCommentLine($line) {
-        $line = explode(' ', $line);
+    private function _parseCommentLine($line)
+    {
+        $line    = explode(' ', $line);
         $line[0] = substr($line[0], 1);
-        $class = new ParseLine();
-        $action = 'parseLine' . Tools::underlineToHump($line[0]);
+        $class   = new ParseLine();
+        $action  = 'parseLine' . Tools::underlineToHump($line[0]);
         if (!method_exists($class, $action)) {
             $action = 'parseLineTitle';
         }

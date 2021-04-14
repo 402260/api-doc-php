@@ -1,28 +1,36 @@
 <?php
+
 namespace phpwdk\apidoc\lib;
 
 /**
  * 按行解析注释参数
  * Class ParseLine
+ *
  * @package phpwdk\apidoc\lib
  */
 class ParseLine
 {
     /**
      * 解析 title|url
+     *
      * @param $line
+     *
      * @return array
      */
-    public function parseLineTitle($line) {
+    public function parseLineTitle($line)
+    {
         return ['type' => isset($line[0]) ? $line[0] : '', 'content' => isset($line[1]) ? $line[1] : ''];
     }
 
     /**
      * 解析 param
+     *
      * @param $line
+     *
      * @return array
      */
-    public function parseLineParam($line) {
+    public function parseLineParam($line)
+    {
         return [
             'type'          => isset($line[0]) ? $line[0] : '',
             'param_type'    => isset($line[1]) ? $line[1] : '',
@@ -35,10 +43,13 @@ class ParseLine
 
     /**
      * 解析 code
+     *
      * @param $line
+     *
      * @return array
      */
-    public function parseLineCode($line) {
+    public function parseLineCode($line)
+    {
         return [
             'type'    => isset($line[0]) ? $line[0] : '',
             'code'    => isset($line[1]) ? $line[1] : '',
@@ -48,10 +59,13 @@ class ParseLine
 
     /**
      * 解析 return
+     *
      * @param $line
+     *
      * @return array
      */
-    public function parseLineReturn($line) {
+    public function parseLineReturn($line)
+    {
         return [
             'type'         => isset($line[0]) ? $line[0] : '',
             'return_type'  => isset($line[1]) ? $line[1] : '',
