@@ -9,30 +9,14 @@ class Api
      * @title 用户登录API
      * @url https://wwww.baidu.com/login
      * @method POST
-     * @param string username 账号 空 必须
-     * @param string password 密码 空 必须
+     * @param string username 是 账号 无 无 账户登陆信息
+     * @param string password 是 密码 无 无 账户登陆信息
      * @code 1 成功
      * @code 2 失败
-     * @return int code 状态码（具体参见状态码说明）
-     * @return string msg 提示信息
+     * @desc_return int code 是 状态码（具体参见状态码说明） 无 无
+     * @desc_return string msg 是 提示信息 无 无
      */
     public function login() {
         return json_encode(['code' => 1, 'msg' => '登录成功']);
-    }
-
-    /**
-     * @title 用户注册API
-     * @url https://wwww.baidu.com/reg
-     * @method POST
-     * @param string username 账号 空 必须
-     * @param string password 密码 空 必须
-     * @param string password2 重复密码 空 必须
-     * @code 1 成功
-     * @code 2 失败
-     * @return int code 状态码（具体参见状态码说明）
-     * @return string msg 提示信息
-     */
-    public function reg() {
-        return json_encode(['code' => 1, 'msg' => '注册成功']);
     }
 }
