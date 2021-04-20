@@ -31,19 +31,23 @@ class BootstrapApiDoc extends ApiDoc
      * @var string - 自定义CSS
      */
     private $customCss = '<style type="text/css">
-        ::-webkit-scrollbar {width: 5px;}
-        .navbar-collapse.collapse.show::-webkit-scrollbar {width: 0; height: 0;background-color: rgba(255, 255, 255, 0);}
-        ::-webkit-scrollbar-track {background-color: rgba(255, 255, 255, 0.2);-webkit-border-radius: 2em;-moz-border-radius: 2em;border-radius: 2em;}
-        ::-webkit-scrollbar-thumb {background-color: rgba(0, 0, 0, 0.8);-webkit-border-radius: 2em;-moz-border-radius: 2em;border-radius: 2em;}
-        ::-webkit-scrollbar-button {-webkit-border-radius: 2em;-moz-border-radius: 2em;border-radius: 2em;height: 0;background-color: rgba(0, 0, 0, 0.9);}
-        ::-webkit-scrollbar-corner {background-color: rgba(0, 0, 0, 0.9);}
         #list-tab-left-nav{display: none;}
         .doc-content{margin-top: 75px;}
-        .class-item .class-title {text-indent: 0.6em;border-left: 5px solid lightseagreen;font-size: 24px;margin: 15px 0;}
-        .action-item .action-title {text-indent: 0.6em;border-left: 3px solid #F0AD4E;font-size: 20px;margin: 8px 0;}
-        .table-item {background-color:#FFFFFF;padding-top: 10px;margin-bottom:10px;border: solid 1px #ccc;border-radius: 5px;}
-        .list-group-item-sub{padding: .5rem 1.25rem;}
+        .class-item .class-title {text-indent: 0.6em;border-left: 5px solid lightseagreen;font-size: 21px;margin: 7px 0;font-weight:bold}
+        .action-item .action-title {text-indent: 0.6em;border-left: 3px solid #F0AD4E;font-size: 17px;margin: 8px 0;font-weight:bold}
+        .table-item {background-color:#FFFFFF;padding-top: 10px;margin-bottom:8px;border: solid 1px #ccc;border-radius: 5px;}
+        .list-group-item{padding: .5rem 1.25rem;}
+        .list-group-item-sub{padding: .2rem 1rem;}
         .copyright-content{margin: 10px 0;}
+        .table{table-layout: fixed;margin-bottom: .2rem;}
+        .table th{padding: 0.4rem;font-size: 14px;background-color: #ddd;}
+        .table td{word-break: break-all;word-wrap: break-word;overflow: hidden;width: 20%;padding: 0.4rem;font-size: 14px;}
+        body{background-color: #d3d3d3;}
+        p{margin-bottom: .3rem;}
+        .btn-sm{padding: 0.1rem .5rem;font-size: .675rem;}
+        .topright{display: flex;justify-content: center;flex-direction: column;}
+        .trightout{height: 50%;font-size: 6px;}
+        .outside{height: 50px;}
     </style>';
 
     /**
@@ -155,7 +159,7 @@ EXT;
             return '';
         }
         $html = '<div class="table-item col-md-12"><p class="table-title"><span class="btn  btn-sm btn-success">返回参数</span></p>';
-        $html .= '<table class="table"><tr><td>字段</td><td>类型</td><td>必须</td><td>名称</td><td>上级节点</td><td>默认值</td><td>描述</td></tr>';
+        $html .= '<table class="table text-center"><tr><td>字段</td><td>类型</td><td>必须</td><td>名称</td><td>上级节点</td><td>默认值</td><td>描述</td></tr>';
         foreach ($data as $v) {
             $html .= '<tr>
                         <td>' . Tools::getSubValue('return_name', $v, '') . '</td>
@@ -183,7 +187,7 @@ EXT;
             return '';
         }
         $html = '<div class="table-item col-md-12"><p class="table-title"><span class="btn  btn-sm btn-success">返回参数</span></p>';
-        $html .= '<table class="table"><tr><td>字段</td><td>类型</td><td>必须</td><td>名称</td><td>上级节点</td><td>默认值</td><td>描述</td></tr>';
+        $html .= '<table class="table text-center"><tr><td>字段</td><td>类型</td><td>必须</td><td>名称</td><td>上级节点</td><td>默认值</td><td>描述</td></tr>';
         foreach ($data as $v) {
             $html .= '<tr>
                         <td>' . Tools::getSubValue('return_name', $v, '') . '</td>
@@ -212,7 +216,7 @@ EXT;
             return $html;
         }
         $html .= '<div class="table-item col-md-12"><p class="table-title"><span class="btn  btn-sm btn-danger">请求参数</span></p>';
-        $html .= '<table class="table"><tr><td>字段</td><td>类型</td><td>必须</td><td>名称</td><td>上级节点</td><td>默认值</td><td>描述</td></tr>';
+        $html .= '<table class="table text-center"><tr><td>字段</td><td>类型</td><td>必须</td><td>名称</td><td>上级节点</td><td>默认值</td><td>描述</td></tr>';
         foreach ($data as $v) {
             $html .= '<tr>
                         <td>' . Tools::getSubValue('param_name', $v, '') . '</td>
@@ -241,7 +245,7 @@ EXT;
             return $html;
         }
         $html .= '<div class="table-item col-md-12"><p class="table-title"><span class="btn  btn-sm btn-warning">状态码说明</span></p>';
-        $html .= '<table class="table"><tr><td>状态码</td><td>描述</td></tr>';
+        $html .= '<table class="table text-center"><tr><td>状态码</td><td>描述</td></tr>';
         foreach ($data as $v) {
             $html .= '<tr>
                         <td>' . Tools::getSubValue('code', $v, '') . '</td>
@@ -267,11 +271,13 @@ EXT;
         $actionItem['url']    = $actionItem['url'] ?? '--';
         $html                 = <<<EXT
                 <div class="list-group-item list-group-item-action action-item  col-md-12" id="{$className}_{$actionName}">
-                    <h4 class="action-title">API - {$actionItem['title']}</h4>
-                    <p>请求方式：
-                        <span class="btn btn-info btn-sm">{$actionItem['method']}</span>
-                    </p>
-                    <p>请求地址：<a href="{$actionItem['url']}">{$actionItem['url']}</a></p>
+                    <div class="d-flex justify-content-between align-items-center outside">
+                        <h4 class="action-title">API - {$actionItem['title']}</h4>
+                        <div class="topright">
+                            <div class="trightout">请求方式：{$actionItem['method']}</div>
+                            <div class="trightout">请求地址：<a href="{$actionItem['url']}">{$actionItem['url']}</a></div>
+                        </div>
+                    </div>
                     {$this->_getParamData(Tools::getSubValue('param', $actionItem, []))}
                     {$this->_getReturnData(Tools::getSubValue('return', $actionItem, []))}
                     {$this->_getCodeData(Tools::getSubValue('code', $actionItem, []))}
@@ -297,13 +303,12 @@ EXT;
                 $actionHtml .= $this->_getActionItem($className, $actionName, $actionItem);
             }
         }
-        $html = <<<EXT
+        return <<<EXT
                     <div class="class-item" id="{$className}">
-                        <h2 class="class-title">{$title}</h2>
+                        <h3 class="class-title">{$title}</h3>
                         <div class="list-group">{$actionHtml}</div>
                     </div>
 EXT;
-        return $html;
     }
 
     /**
