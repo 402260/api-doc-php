@@ -30,7 +30,7 @@ class BootstrapApiDoc extends ApiDoc
     /**
      * @var string - 自定义CSS
      */
-    private $customCss = '<style type="text/css">
+    private $customCss = '<style>
         #list-tab-left-nav{display: none;}
         .doc-content{margin-top: 75px;}
         .class-item .class-title {text-indent: 0.6em;border-left: 5px solid lightseagreen;font-size: 21px;margin: 7px 0;font-weight:bold}
@@ -53,7 +53,7 @@ class BootstrapApiDoc extends ApiDoc
     /**
      * @var string - 自定义JS
      */
-    private $customJs = '<script type="text/javascript">
+    private $customJs = '<script>
          $(\'a[href*="#"]:not([href="#"])\').click(function() {
             if (location.pathname.replace(/^\//, \'\') == this.pathname.replace(/^\//, \'\') && location.hostname == this.hostname) {
                 var target = $(this.hash);
