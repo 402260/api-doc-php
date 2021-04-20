@@ -51,8 +51,8 @@ class ParseComment
                 continue;
             }
             $_type    = $_parse['type'];
-            $_content = isset($_parse['content']) ? $_parse['content'] : '';
-            if (in_array($_type, ['param', 'code', 'return'])) {
+            $_content = $_parse['content'] ?? '';
+            if (in_array($_type, ['param', 'code', 'return', 'desc_return'])) {
                 if (!isset($this->commentParams[$_type])) {
                     $this->commentParams[$_type] = [];
                 }
