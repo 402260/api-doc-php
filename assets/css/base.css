@@ -1,0 +1,106 @@
+::-webkit-scrollbar {
+  width: 5px;
+}
+.navbar-collapse.collapse.show::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background-color: rgba(255, 255, 255, 0);
+}
+::-webkit-scrollbar-track {
+  background-color: rgba(255, 255, 255, 0.2);
+  -webkit-border-radius: 2em;
+  -moz-border-radius: 2em;
+  border-radius: 2em;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.8);
+  -webkit-border-radius: 2em;
+  -moz-border-radius: 2em;
+  border-radius: 2em;
+}
+::-webkit-scrollbar-button {
+  -webkit-border-radius: 2em;
+  -moz-border-radius: 2em;
+  border-radius: 2em;
+  height: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+::-webkit-scrollbar-corner {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+body {
+  background-color: #d3d3d3;
+}
+p {
+  margin-bottom: 0.3rem;
+}
+#list-tab-left-nav {
+  display: none;
+}
+.doc-content {
+  margin-top: 75px;
+}
+.class-item .class-title {
+  text-indent: 0.6em;
+  border-left: 5px solid lightseagreen;
+  font-size: 21px;
+  margin: 7px 0;
+  font-weight: bold;
+}
+.action-item .action-title {
+  text-indent: 0.6em;
+  border-left: 3px solid #F0AD4E;
+  font-size: 17px;
+  margin: 8px 0;
+  font-weight: bold;
+}
+.table-item {
+  background-color: #FFFFFF;
+  padding-top: 10px;
+  margin-bottom: 8px;
+  border: solid 1px #ccc;
+  border-radius: 5px;
+}
+.list-group-item {
+  padding: 0.5rem 1.25rem;
+}
+.list-group-item-sub {
+  padding: 0.2rem 1rem;
+}
+.copyright-content {
+  margin: 10px 0;
+}
+.table {
+  table-layout: fixed;
+  margin-bottom: 0.2rem;
+}
+.table th {
+  padding: 0.4rem;
+  font-size: 14px;
+  background-color: #ddd;
+}
+.table td {
+  word-break: break-all;
+  word-wrap: break-word;
+  overflow: hidden;
+  width: 20%;
+  padding: 0.4rem;
+  font-size: 14px;
+}
+.btn-sm {
+  padding: 0.1rem 0.5rem;
+  font-size: 0.675rem;
+}
+.topright {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.trightout {
+  height: 50%;
+  font-size: 6px;
+}
+.outside {
+  height: 50px;
+}
+/*# sourceMappingURL=base.css.map */
