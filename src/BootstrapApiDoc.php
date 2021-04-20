@@ -39,9 +39,9 @@ class BootstrapApiDoc extends ApiDoc
         .list-group-item{padding: .5rem 1.25rem;}
         .list-group-item-sub{padding: .2rem 1rem;}
         .copyright-content{margin: 10px 0;}
-        .table{table-layout: fixed;margin-bottom: .2rem;}
+        .table{/*table-layout: fixed;*/margin-bottom: .2rem;}
         .table th{padding: 0.4rem;font-size: 14px;background-color: #ddd;}
-        .table td{word-break: break-all;word-wrap: break-word;overflow: hidden;width: 20%;padding: 0.4rem;font-size: 14px;}
+        .table td{word-break: break-all;word-wrap: break-word;overflow: hidden;padding: 0.4rem;font-size: 14px;}
         body{background-color: #d3d3d3;}
         p{margin-bottom: .3rem;}
         .btn-sm{padding: 0.1rem .5rem;font-size: .675rem;}
@@ -162,13 +162,13 @@ EXT;
         $html .= '<table class="table text-center"><tr><td>字段</td><td>类型</td><td>必须</td><td>名称</td><td>上级节点</td><td>默认值</td><td>描述</td></tr>';
         foreach ($data as $v) {
             $html .= '<tr>
-                        <td>' . Tools::getSubValue('return_name', $v, '') . '</td>
-                        <td>' . Tools::getSubValue('return_type', $v, '') . '</td>
-                        <td>' . Tools::getSubValue('return_required', $v, '是') . '</td>
-                        <td>' . Tools::getSubValue('return_title', $v, '') . '</td>
-                        <td>' . Tools::getSubValue('return_superior', $v, '') . '</td>
-                        <td>' . Tools::getSubValue('return_default', $v, '无默认值') . '</td>
-                        <td>' . Tools::getSubValue('return_desc', $v, '') . '</td>
+                        <td width="20%">' . Tools::getSubValue('return_name', $v, '') . '</td>
+                        <td width="10%">' . Tools::getSubValue('return_type', $v, '') . '</td>
+                        <td width="10%">' . Tools::getSubValue('return_required', $v, '是') . '</td>
+                        <td width="20%">' . Tools::getSubValue('return_title', $v, '') . '</td>
+                        <td width="10%">' . Tools::getSubValue('return_superior', $v, '') . '</td>
+                        <td width="10%">' . Tools::getSubValue('return_default', $v, '无默认值') . '</td>
+                        <td width="20%" class="text-left">' . Tools::getSubValue('return_desc', $v, '') . '</td>
                       </tr>';
         }
         $html .= '</table></div>';
@@ -186,17 +186,17 @@ EXT;
         if (!is_array($data) || count($data) < 1) {
             return '';
         }
-        $html = '<div class="table-item col-md-12"><p class="table-title"><span class="btn  btn-sm btn-success">返回参数</span></p>';
+        $html = '<div class="table-item col-md-12"><p class="table-title"><span class="btn btn-sm btn-success">返回参数</span></p>';
         $html .= '<table class="table text-center"><tr><td>字段</td><td>类型</td><td>必须</td><td>名称</td><td>上级节点</td><td>默认值</td><td>描述</td></tr>';
         foreach ($data as $v) {
             $html .= '<tr>
-                        <td>' . Tools::getSubValue('return_name', $v, '') . '</td>
-                        <td>' . Tools::getSubValue('return_type', $v, '') . '</td>
-                        <td>' . Tools::getSubValue('return_required', $v, '是') . '</td>
-                        <td>' . Tools::getSubValue('return_title', $v, '') . '</td>
-                        <td>' . Tools::getSubValue('return_superior', $v, '') . '</td>
-                        <td>' . Tools::getSubValue('return_default', $v, '无默认值') . '</td>
-                        <td>' . Tools::getSubValue('return_desc', $v, '') . '</td>
+                        <td width="20%">' . Tools::getSubValue('return_name', $v, '') . '</td>
+                        <td width="10%">' . Tools::getSubValue('return_type', $v, '') . '</td>
+                        <td width="10%">' . Tools::getSubValue('return_required', $v, '是') . '</td>
+                        <td width="20%">' . Tools::getSubValue('return_title', $v, '') . '</td>
+                        <td width="10%">' . Tools::getSubValue('return_superior', $v, '') . '</td>
+                        <td width="10%">' . Tools::getSubValue('return_default', $v, '无默认值') . '</td>
+                        <td width="20%" class="text-left">' . Tools::getSubValue('return_desc', $v, '') . '</td>
                       </tr>';
         }
         $html .= '</table></div>';
@@ -219,13 +219,13 @@ EXT;
         $html .= '<table class="table text-center"><tr><td>字段</td><td>类型</td><td>必须</td><td>名称</td><td>上级节点</td><td>默认值</td><td>描述</td></tr>';
         foreach ($data as $v) {
             $html .= '<tr>
-                        <td>' . Tools::getSubValue('param_name', $v, '') . '</td>
-                        <td>' . Tools::getSubValue('param_type', $v, '') . '</td>
-                        <td>' . Tools::getSubValue('param_require', $v, '是') . '</td>
-                        <td>' . Tools::getSubValue('param_title', $v, '') . '</td>
-                        <td>' . Tools::getSubValue('param_superior', $v, '') . '</td>
-                        <td>' . Tools::getSubValue('param_default', $v, '无默认值') . '</td>
-                        <td>' . Tools::getSubValue('param_desc', $v, '') . '</td>
+                        <td width="20%">' . Tools::getSubValue('param_name', $v, '') . '</td>
+                        <td width="10%">' . Tools::getSubValue('param_type', $v, '') . '</td>
+                        <td width="10%">' . Tools::getSubValue('param_require', $v, '是') . '</td>
+                        <td width="20%">' . Tools::getSubValue('param_title', $v, '') . '</td>
+                        <td width="10%">' . Tools::getSubValue('param_superior', $v, '') . '</td>
+                        <td width="10%">' . Tools::getSubValue('param_default', $v, '无默认值') . '</td>
+                        <td width="20%" class="text-left">' . Tools::getSubValue('param_desc', $v, '') . '</td>
                       </tr>';
         }
         $html .= '</table></div>';
@@ -259,9 +259,9 @@ EXT;
     /**
      * 获取指定接口操作下的文档信息
      *
-     * @param string $className  - 类名
+     * @param string $className - 类名
      * @param string $actionName - 操作名
-     * @param array  $actionItem - 接口数据
+     * @param array $actionItem - 接口数据
      * @return string
      */
     private function _getActionItem(string $className, string $actionName, array $actionItem): string
@@ -316,7 +316,7 @@ EXT;
      * @param array $data - 文档数据
      * @return string
      */
-    private function _getDocList(array $data = []): string
+    private function _getDocList(array $data): string
     {
         $html = '';
         if (count($data) < 1) {
