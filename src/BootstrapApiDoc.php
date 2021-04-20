@@ -316,7 +316,7 @@ EXT;
      * @param array $data - 文档数据
      * @return string
      */
-    private function _getDocList(array $data): string
+    private function _getDocList(array $data = []): string
     {
         $html = '';
         if (count($data) < 1) {
