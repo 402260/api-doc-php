@@ -181,7 +181,7 @@ EXT;
      * @param array $data
      * @return string
      */
-    private function _getDescReturnData(array $data): string
+    private function _getDescReturnData(array $data = []): string
     {
         if (!is_array($data) || count($data) < 1) {
             return '';
