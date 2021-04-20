@@ -352,6 +352,7 @@ EXT;
             $html .= '</div></li>';
         }
         $html .= ' <li class="nav-item"><a class="nav-link" href="?download=api_doc_php">下载文档</a></li>';
+        $html .= ' <li class="nav-item"><a class="nav-link" href="/static/theme/img/doc.png">接口流程图</a></li>';
         $html .= '</ul>';
         return $html;
     }
