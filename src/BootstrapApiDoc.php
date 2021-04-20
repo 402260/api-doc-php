@@ -269,7 +269,7 @@ EXT;
         $actionItem['title']  = $actionItem['title'] ?? '--';
         $actionItem['method'] = $actionItem['method'] ?? '--';
         $actionItem['url']    = $actionItem['url'] ?? '--';
-        $html                 = <<<EXT
+        return <<<EXT
                 <div class="list-group-item list-group-item-action action-item  col-md-12" id="{$className}_{$actionName}">
                     <div class="d-flex justify-content-between align-items-center outside">
                         <h4 class="action-title">API - {$actionItem['title']}</h4>
@@ -284,7 +284,6 @@ EXT;
                     {$this->_getDescReturnData(Tools::getSubValue('desc_return', $actionItem, []))}
                 </div>
 EXT;
-        return $html;
     }
 
     /**
