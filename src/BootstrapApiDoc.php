@@ -269,12 +269,13 @@ EXT;
         $actionItem['title']  = $actionItem['title'] ?? '--';
         $actionItem['method'] = $actionItem['method'] ?? '--';
         $actionItem['url']    = $actionItem['url'] ?? '--';
+        $actionItem['submit'] = $actionItem['submit'] ?? '--';
         return <<<EXT
                 <div class="list-group-item list-group-item-action action-item  col-md-12" id="{$className}_{$actionName}">
                     <div class="d-flex justify-content-between align-items-center outside">
                         <h4 class="action-title">API - {$actionItem['title']}</h4>
                         <div class="topright">
-                            <div class="trightout">请求方式：{$actionItem['method']}</div>
+                            <div class="trightout">请求方式：{$actionItem['method']} [{$actionItem['submit']}]</div>
                             <div class="trightout">请求地址：<a href="{$actionItem['url']}">{$actionItem['url']}</a></div>
                         </div>
                     </div>

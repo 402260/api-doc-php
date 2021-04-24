@@ -21,7 +21,6 @@ class ParseComment
      * 将注释按行解析并以数组格式返回
      *
      * @param string $comment - 原始注释字符串
-     *
      * @return bool|array
      */
     public function parseCommentToArray(string $comment): array
@@ -51,7 +50,7 @@ class ParseComment
                 continue;
             }
             $_type    = $_parse['type'];
-            $_content = $_parse['content'] ?? '';
+            $_content = isset($_parse['content']) ? $_parse['content'] : '';
             if (in_array($_type, ['param', 'code', 'return', 'desc_return'])) {
                 if (!isset($this->commentParams[$_type])) {
                     $this->commentParams[$_type] = [];
@@ -69,7 +68,6 @@ class ParseComment
      * 解析注释中的参数
      *
      * @param string $line - 注释行
-     *
      * @return bool|array - 解析后的数组（解析失败返回false）
      */
     private function _parseCommentLine(string $line): array
