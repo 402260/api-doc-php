@@ -42,7 +42,7 @@ class BootstrapApiDoc extends ApiDoc
         .table{/*table-layout: fixed;*/margin-bottom: .2rem;}
         .table th{padding: 0.4rem;font-size: 14px;background-color: #ddd;}
         .table td{word-break: break-all;word-wrap: break-word;overflow: hidden;padding: 0.4rem;font-size: 14px;}
-        body{background-color: #d3d3d3;font-size: 13px;}
+        body{background-color: #fcf5f5;font-size: 13px;}
         p{margin-bottom: .3rem;}
         .btn-sm{padding: 0.1rem .5rem;font-size: .675rem;}
         .topright{display: flex;justify-content: center;flex-direction: column;}
