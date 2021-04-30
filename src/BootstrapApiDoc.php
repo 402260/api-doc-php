@@ -122,15 +122,15 @@ class BootstrapApiDoc extends ApiDoc
         </head>
         <body>
         <div class="container-fluid">
-             <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top navbar-light bg-light">
-                   <a class="navbar-brand" href="#">API文档</a>
-                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" >
-                       <span class="navbar-toggler-icon"></span>
-                   </button>
-                   <div class="collapse navbar-collapse" id="navbarColor01">
-                        {$this->_getTopNavList($data)}
-                   </div>
-             </nav>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+               <a class="navbar-brand" href="#">API文档</a>
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" >
+                   <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="navbarColor01">
+                    {$this->_getTopNavList($data)}
+               </div>
+            </nav>
              <div class="row">
                   <div class="col-lg-12">{$this->_getDocList($data)}</div>
              </div>
@@ -339,21 +339,26 @@ EXT;
      */
     private function _getTopNavList(array $data): string
     {
-        $html = '<ul class="navbar-nav" id="navbar-nav-top-nav">';
+        $html = '<ul class="navbar-nav mr-auto navbar-nav-scroll" id="navbar-nav-top-nav">';
         foreach ($data as $className => $classItem) {
             $title = Tools::getSubValue('title', $classItem, '未命名');
-            $html  .= '<li class="nav-item dropdown">';
-            $html  .= '<a class="nav-link dropdown-toggle" href="#" id="' . $className . '-nav" data-toggle="dropdown">' . $title . '</a>';
-            $html  .= '<div class="dropdown-menu" aria-labelledby="' . $className . '-nav">';
+            $html .= '<li class="nav-item dropdown">';
+            $html .= '<a class="nav-link dropdown-toggle" href="#" id="' . $className . '-nav" data-toggle="dropdown">' . $title . '</a>';
+            $html .= '<div class="dropdown-menu" aria-labelledby="' . $className . '-nav">';
             foreach ($classItem['action'] as $actionName => $actionItem) {
                 $title = Tools::getSubValue('title', $actionItem, '未命名');
-                $id    = $className . '_' . $actionName;
-                $html  .= '<a class="dropdown-item" href="#' . $id . '">' . $title . '</a>';
+                $id = $className . '_' . $actionName;
+                $html .= '<a class="dropdown-item" href="#' . $id . '">' . $title . '</a>';
             }
             $html .= '</div></li>';
         }
-        $html .= ' <li class="nav-item"><a class="nav-link" href="?download=api_doc_php">下载文档</a></li>';
-        $html .= ' <li class="nav-item"><a class="nav-link" href="/static/theme/img/doc.png" target="_blank">接口流程图</a></li>';
+        $html .= ' <li class="nav-item dropdown">';
+        $html .= '   <a class="nav-link dropdown-toggle" href="#" id="tools-nav" data-toggle="dropdown">其它功能</a>';
+        $html .= '  <div class="dropdown-menu" aria-labelledby="tools-nav">';
+        $html .= '     <a class="dropdown-item" href="?download=api_doc_php">下载文档</a>';
+        $html .= '     <a class="dropdown-item" href="/static/theme/img/doc.png" target="_blank">接口流程图</a>';
+        $html .= '   </div>';
+        $html .= ' </li>';
         $html .= '</ul>';
         return $html;
     }
