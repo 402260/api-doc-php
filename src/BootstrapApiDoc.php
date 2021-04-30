@@ -48,7 +48,6 @@ class BootstrapApiDoc extends ApiDoc
         .topright{display: flex;justify-content: center;flex-direction: column;}
         .trightout{height: 50%;font-size: 6px;}
         .outside{height: 50px;}
-        .overflow-y{overflow-y: auto;white-space: nowrap;}
     </style>';
 
     /**
@@ -123,7 +122,7 @@ class BootstrapApiDoc extends ApiDoc
         </head>
         <body>
         <div class="container-fluid">
-             <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top overflow-y">
+             <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
                    <a class="navbar-brand" href="#">API文档</a>
                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" >
                        <span class="navbar-toggler-icon"></span>
