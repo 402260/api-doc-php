@@ -102,4 +102,9 @@ p {
 .outside {
   height: 50px;
 }
+
+.overflow-y {
+  overflow-y: auto;
+  white-space: nowrap;
+}
 /*# sourceMappingURL=base.css.map */
